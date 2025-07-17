@@ -21,9 +21,12 @@
                     <th scope="row">{{ $post->id }}</th>
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->description }}</td>
-                    <td>{{ $post->image }}</td>
+                    <td>@if($post->image)
+                            <img src="{{ asset('storage/images/' . $post->image) }}" width="200">
+                        @endif
+                    </td>
                     <td>
-                        <a href="{{ route('posts.update', $post->id) }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary">Edit</a>
                         <a href="{{ route('posts.show', $post->id) }}" class="btn btn-success">Show</a>
                         <form action="{{ route('posts.destroy', $post->id) }}" method="POST" class="d-inline">
                             @csrf
